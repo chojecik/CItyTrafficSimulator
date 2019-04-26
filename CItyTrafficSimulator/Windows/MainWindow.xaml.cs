@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CItyTrafficSimulator.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,21 @@ namespace CItyTrafficSimulator
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ExpWithoutAlg_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            ExpWithoutAlgWindow expWithoutAlgWindow = new ExpWithoutAlgWindow(this);
+            expWithoutAlgWindow.Show();
+           
+        }
+
+        private void ExpWithAlg_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            ExpWithAlgWindow expWithAlgWindow = new ExpWithAlgWindow(this);
+            expWithAlgWindow.Show();
         }
     }
 }
