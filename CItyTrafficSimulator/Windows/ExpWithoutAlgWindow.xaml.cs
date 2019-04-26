@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CItyTrafficSimulator.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace CItyTrafficSimulator.Windows
             InitializeComponent();
             _mainWindow = mainWindow;
             Closed += OnWindowClosed;
+            Console.WriteLine("{0}",tf.)
         }
 
         public void OnWindowClosed(object sender, System.EventArgs e)

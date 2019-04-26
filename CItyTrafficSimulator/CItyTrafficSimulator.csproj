@@ -72,6 +72,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Car.cs" />
+    <Compile Include="Classes\TrafficLights.cs" />
     <Compile Include="Windows\ExpWithAlgWindow.xaml.cs">
       <DependentUpon>ExpWithAlgWindow.xaml</DependentUpon>
     </Compile>
