@@ -10,5 +10,7 @@ namespace CItyTrafficSimulator.Classes
     {
         private int speed { get; set; }
         private int destination { get; set; }
+        private int postionX { get; set; }
+        private int postionY { get; set; }
     }
 }

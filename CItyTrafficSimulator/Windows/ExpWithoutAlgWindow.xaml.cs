@@ -27,7 +27,6 @@ namespace CItyTrafficSimulator.Windows
             InitializeComponent();
             _mainWindow = mainWindow;
             Closed += OnWindowClosed;
-            Console.WriteLine("{0}",tf.)
         }
 
         public void OnWindowClosed(object sender, System.EventArgs e)
