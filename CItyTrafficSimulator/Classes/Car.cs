@@ -8,6 +8,7 @@ namespace CItyTrafficSimulator.Classes
 {
     public class Car
     {
-
+        private int speed { get; set; }
+        private int destination { get; set; }
     }
 }
