@@ -48,7 +48,7 @@ namespace CItyTrafficSimulator.Windows
             Colours colours = new Colours();
             RouteList routeList = new RouteList(this);
 
-            for (int i=0; i<10; i++)
+            for (int i=0; i<30; i++)
             {
                 Car newCar = new Car();
                 Ellipse ellipse = new Ellipse();
@@ -117,11 +117,22 @@ namespace CItyTrafficSimulator.Windows
                         if (cars[i].PostionX > cars[i].RouteOfCar.EndPoint.X)
                         {
                             cars[i].Vehicle.SetValue(Canvas.LeftProperty, cars[i].PostionX - distance);
-                            cars[i].PostionY -= distance;
+                            cars[i].PostionX -= distance;
                         }
                         else
                         {
                             
+                        }
+                        break;
+                    case 4:
+                        if (cars[i].PostionY > cars[i].RouteOfCar.EndPoint.Y)
+                        {
+                            cars[i].Vehicle.SetValue(Canvas.TopProperty, cars[i].PostionY - distance);
+                            cars[i].PostionY -= distance;
+                        }
+                        else
+                        {
+
                         }
                         break;
                     default:
