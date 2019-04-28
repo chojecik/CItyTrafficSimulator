@@ -9,10 +9,12 @@ namespace CItyTrafficSimulator.Classes
 {
     public class Car
     {
-        private int speed { get; set; }
-        private int destination { get; set; }
-        private int postionX { get; set; }
-        private int postionY { get; set; }
-        private Ellipse vehicle { get; set; }
+        public int Speed { get; set; }
+        public int Destination { get; set; }
+        public int PostionX { get; set; }
+        public int PostionY { get; set; }
+        public Ellipse Vehicle { get; set; }
+        public Route RouteOfCar { get; set; }
+
     }
 }

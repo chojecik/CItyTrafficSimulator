@@ -11,7 +11,7 @@ namespace CItyTrafficSimulator.Classes
     {
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
-        public int OccupancyRate { get; set; }
+        public int OccupancyRate { get; set; }      //im wyższy współczynnik tym bardziej uczęszczana trasa
         public List<TrafficLights> TrafficLightsOnRoute { get; set; }
     }
 }

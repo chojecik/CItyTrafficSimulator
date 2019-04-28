@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CItyTrafficSimulator.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,32 @@ namespace CItyTrafficSimulator.Classes
     public class RouteList
     {
         public List<Route> routes;
-
-        public RouteList()
+        private ExpWithoutAlgWindow _expWithoutAlgWindow;
+        private TrafficLightsList trafficLightsList;
+        public RouteList(ExpWithoutAlgWindow expWithoutAlgWindow)
         {
+            _expWithoutAlgWindow = expWithoutAlgWindow;
             routes = new List<Route>();
+            trafficLightsList = new TrafficLightsList(_expWithoutAlgWindow);
 
-            routes.Add(new Route() {StartPoint = new Point(50,10), EndPoint = new Point(50, 771), OccupancyRate = 2,  )
+            routes.Add(new Route() { StartPoint = new Point(50, 10), EndPoint = new Point(50, 771), OccupancyRate = 2, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[0] } }); //Trasa Pomorska - Opacka
+            routes.Add(new Route() { StartPoint = new Point(50, 10), EndPoint = new Point(10, 330), OccupancyRate = 2, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[0] } }); //Pomorska - Grunwaldzka w stronę Sopotu
+            routes.Add(new Route() { StartPoint = new Point(10, 355), EndPoint = new Point(1174, 355), OccupancyRate = 2, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[0] } }); //Trasa Grunwaldzka w stronę Gdanska
+            routes.Add(new Route() { StartPoint = new Point(1174, 330), EndPoint = new Point(10, 330), OccupancyRate = 2, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[0] } }); //Trasa Grunwaldzka w stronę Sopotu
+            routes.Add(new Route() { StartPoint = new Point(65, 771), EndPoint = new Point(65, 10), OccupancyRate = 2, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[30] } }); //Trasa Opacka - Pomorska
+            routes.Add(new Route() { StartPoint = new Point(50, 10), EndPoint = new Point(177, 771), OccupancyRate = 2, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[0], trafficLightsList.AllTraficLights[29]  } }); //Trasa Pomorska - Opata Jacka Rybińskiego
+            routes.Add(new Route() { StartPoint = new Point(50, 10), EndPoint = new Point(940, 771), OccupancyRate = 4, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[0], trafficLightsList.AllTraficLights[29], trafficLightsList.AllTraficLights[36], trafficLightsList.AllTraficLights[35], trafficLightsList.AllTraficLights[16], trafficLightsList.AllTraficLights[10] } }); //Trasa Pomorska - Aleja Żołnierzy wyklętych przez Opata Jacka Rybińskiego oraz Polanki
+            routes.Add(new Route() { StartPoint = new Point(50, 10), EndPoint = new Point(527, 10), OccupancyRate = 5, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[0], trafficLightsList.AllTraficLights[29], trafficLightsList.AllTraficLights[36], trafficLightsList.AllTraficLights[37], trafficLightsList.AllTraficLights[21]} }); //Trasa Pomorska - Kołobrzeska wyklętych przez Grunwaldzką
+            routes.Add(new Route() { StartPoint = new Point(50, 10), EndPoint = new Point(970, 10), OccupancyRate = 5, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[0], trafficLightsList.AllTraficLights[29], trafficLightsList.AllTraficLights[36], trafficLightsList.AllTraficLights[37], trafficLightsList.AllTraficLights[21], trafficLightsList.AllTraficLights[14], trafficLightsList.AllTraficLights[12] } }); //Trasa Pomorska - Aleja Żołnierzy wyklętych w stronę Zaspy przez Grunwaldzką
+            routes.Add(new Route() { StartPoint = new Point(50, 10), EndPoint = new Point(1174, 355), OccupancyRate = 7, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[0], trafficLightsList.AllTraficLights[29], trafficLightsList.AllTraficLights[36], trafficLightsList.AllTraficLights[37], trafficLightsList.AllTraficLights[21], trafficLightsList.AllTraficLights[14], trafficLightsList.AllTraficLights[12] } }); //Trasa Pomorska - Grunwaldzka w stronę Gdańska
+            routes.Add(new Route() { StartPoint = new Point(50, 10), EndPoint = new Point(970, 771), OccupancyRate = 6, TrafficLightsOnRoute = new List<TrafficLights>() { trafficLightsList.AllTraficLights[0], trafficLightsList.AllTraficLights[29], trafficLightsList.AllTraficLights[36], trafficLightsList.AllTraficLights[37], trafficLightsList.AllTraficLights[21], trafficLightsList.AllTraficLights[14], trafficLightsList.AllTraficLights[12], trafficLightsList.AllTraficLights[11]  } }); //Trasa Pomorska - Aleja Żołnierzy wyklętych w stronę Niedźwiednika przez Grunwaldzką
+
+
+
+
+
+
+
         }
     }
 }
