@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
 
 namespace CItyTrafficSimulator.Classes
 {
@@ -12,5 +13,6 @@ namespace CItyTrafficSimulator.Classes
         private int destination { get; set; }
         private int postionX { get; set; }
         private int postionY { get; set; }
+        private Ellipse vehicle { get; set; }
     }
 }

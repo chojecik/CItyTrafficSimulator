@@ -329,9 +329,9 @@
                     </TransformGroup>
                 </Canvas.RenderTransform>
                 <Rectangle Fill="Black" Height="26" Stroke="White" Width="17" RenderTransformOrigin="0.882,0.144" Canvas.Top="1"/>
-                <Ellipse Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="1" Canvas.Left="4"/>
-                <Ellipse Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="9" Canvas.Left="4"/>
-                <Ellipse Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="17" Canvas.Left="4"/>
+                <Ellipse x:Name="Green32" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="1" Canvas.Left="4"/>
+                <Ellipse x:Name="Yellow32" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="9" Canvas.Left="4"/>
+                <Ellipse x:Name="Red32" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="17" Canvas.Left="4"/>
             </Canvas>
             <Canvas x:Name="TrafficLightPolankiZolnierzy" Height="32" Canvas.Left="911" Canvas.Top="742" Width="19" RenderTransformOrigin="0.5,0.5">
                 <Canvas.RenderTransform>
@@ -525,12 +525,40 @@
                     </TransformGroup>
                 </Canvas.RenderTransform>
                 <Rectangle Fill="Black" Height="26" Stroke="White" Width="17" RenderTransformOrigin="0.882,0.144" Canvas.Top="1"/>
-                <Ellipse x:Name="Red1" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="1" Canvas.Left="4"/>
+                <Ellipse x:Name="Green1" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="1" Canvas.Left="4"/>
                 <Ellipse x:Name="Yellow1" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="9" Canvas.Left="4"/>
-                <Ellipse x:Name="Green1" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="17" Canvas.Left="4"/>
+                <Ellipse x:Name="Red1" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="17" Canvas.Left="4"/>
             </Canvas>
             <Label x:Name="TimeLabel" Content="Time:" Canvas.Left="1057" Canvas.Top="33" Height="48" Width="55" FontSize="20"/>
             <Label x:Name="StopWatchLabel" Content="&#xD;&#xA;" Canvas.Left="1117" Canvas.Top="33" Height="48" Width="78" FontSize="20"/>
+            <Canvas x:Name="TrafficLightBazynskiegoStwoszaMorze_Copy" Height="32" Canvas.Left="319" Canvas.Top="572" Width="19" RenderTransformOrigin="0.5,0.5">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-539.998"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+                <Rectangle Fill="Black" Height="26" Stroke="White" Width="17" RenderTransformOrigin="0.882,0.144" Canvas.Top="1"/>
+                <Ellipse x:Name="Green33" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="1" Canvas.Left="4"/>
+                <Ellipse x:Name="Yellow33" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="9" Canvas.Left="4"/>
+                <Ellipse x:Name="Red33" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="17" Canvas.Left="4"/>
+            </Canvas>
+            <Canvas x:Name="TrafficLightBazynskiegoStwoszaOsowa_Copy" Height="32" Canvas.Left="272" Canvas.Top="503" Width="19" RenderTransformOrigin="0.5,0.5">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-359.81"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+                <Rectangle Fill="Black" Height="26" Stroke="White" Width="17" RenderTransformOrigin="0.882,0.144" Canvas.Top="1"/>
+                <Ellipse x:Name="Green34" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="1" Canvas.Left="4"/>
+                <Ellipse x:Name="Yellow34" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="9" Canvas.Left="4"/>
+                <Ellipse x:Name="Red34" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="17" Canvas.Left="4"/>
+            </Canvas>
 
         </Canvas>
         <Canvas x:Name="TrafficLightGrunwaldzkaPiastowskaGdansk" RenderTransformOrigin="0.5,0.5" Margin="108,393,1036.2,345.4">

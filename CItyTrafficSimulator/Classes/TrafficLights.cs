@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
 
 namespace CItyTrafficSimulator.Classes
 {
     public class TrafficLights
     {
-        private bool redLight { get; set; } 
-        private bool yellowLight { get; set; } 
-        private bool greenLight { get; set; }
-        private int timeOfRedLight { get; set; }
-        private int timeOfYellowLight { get; set; }
-        private int timeOfGreenLight { get; set; }
-        
+        public bool? IsRedLight { get; set; }
+        public bool? IsYellowLight { get; set; }
+        public bool? IsGreenLight { get; set; }
+        public int TimeOfRedLight { get; set; }
+        public int TimeOfYellowLight { get; set; }
+        public int TimeOfGreenLight { get; set; }
+        public Ellipse RedLight { get; set; }
+        public Ellipse YellowLight { get; set; }
+        public Ellipse GreenLight { get; set; }
     }
 }
