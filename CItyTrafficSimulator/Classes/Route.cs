@@ -9,6 +9,7 @@ namespace CItyTrafficSimulator.Classes
 {
     public class Route
     {
+        public int Id { get; set; }
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
         public int OccupancyRate { get; set; }      //im wyższy współczynnik tym bardziej uczęszczana trasa

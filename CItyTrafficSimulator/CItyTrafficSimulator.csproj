@@ -72,7 +72,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Car.cs" />
-    <Compile Include="Classes\Point2D.cs" />
+    <Compile Include="Classes\Colours.cs" />
     <Compile Include="Classes\Route.cs" />
     <Compile Include="Classes\RouteList.cs" />
     <Compile Include="Classes\TrafficLights.cs" />
