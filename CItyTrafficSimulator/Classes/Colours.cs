@@ -22,6 +22,7 @@ namespace CItyTrafficSimulator.Classes
             solidColorBrushes.Add(new SolidColorBrush() { Color = Color.FromRgb(255, 0, 102) });    //pink
             solidColorBrushes.Add(new SolidColorBrush() { Color = Color.FromRgb(102, 51, 0) });    //brown
             solidColorBrushes.Add(new SolidColorBrush() { Color = Color.FromRgb(153, 153, 102) });    //grey
+            solidColorBrushes.Add(new SolidColorBrush() { Color = Color.FromRgb(255, 255, 255) });    //white
 
 
         }
