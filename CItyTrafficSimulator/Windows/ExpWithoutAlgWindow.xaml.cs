@@ -26,6 +26,7 @@ namespace CItyTrafficSimulator.Windows
         private Ellipse ellipse = new Ellipse();
         private readonly double distance = 0.4;    //prędkość poruszania się elips
         private DateTime startTimer = DateTime.UtcNow;
+        private DateTime start = DateTime.UtcNow;
         private Random random = new Random();
         private List<Car> cars = new List<Car>();
         private int counter = 0;
@@ -117,7 +118,7 @@ namespace CItyTrafficSimulator.Windows
             {
                 ControlTrafficLights();
             }
-            if (counter == 20 && cars.Count < 30)  //dodajemy nowy samochod kiedy mamy pewnosc, ze nie nalozy sie on na juz istniejaca elipse
+            if (counter == 20)  //dodajemy nowy samochod kiedy mamy pewnosc, ze nie nalozy sie on na juz istniejaca elipse
             {
                 Car newCar = new Car();
                 Ellipse ellipse = new Ellipse();
@@ -142,7 +143,7 @@ namespace CItyTrafficSimulator.Windows
             }
             //testowe
             DateTime end = DateTime.UtcNow;
-            TimeSpan timeDiff = end - startTimer;
+            TimeSpan timeDiff = end - start;
             StopWatchLabel.Content = Convert.ToDouble(timeDiff.TotalMilliseconds / 1000.0);
 
             cars.ForEach(car =>
@@ -150,7 +151,7 @@ namespace CItyTrafficSimulator.Windows
                 switch (car.RouteOfCar.Id)
                 {
                     case 0:
-                        if (car.PostionY < car.RouteOfCar.EndPoint.Y && (car.PostionY > 326 && car.PostionY < 327 && trafficLights.AllTraficLights[0].IsGreenLight.Value))
+                        if (car.PostionY < 320 || (car.PostionY > 320  && car.PostionY < 326 && trafficLights.AllTraficLights[0].IsGreenLight.Value) || car.PostionY > 326 )
                         {
                             car.Vehicle.SetValue(Canvas.TopProperty, car.PostionY + distance);
                             car.PostionY += distance;
@@ -171,7 +172,7 @@ namespace CItyTrafficSimulator.Windows
                     //    }
                     //    break;
                     case 4:
-                        if (car.PostionY > car.RouteOfCar.EndPoint.Y && (car.PostionY > 401 && car.PostionY < 402 && trafficLights.AllTraficLights[30].IsGreenLight.Value))
+                        if (car.PostionY > 405 || (car.PostionY < 405 && car.PostionY > 400 && trafficLights.AllTraficLights[30].IsGreenLight.Value) || car.PostionY < 400)
                         {
                             car.Vehicle.SetValue(Canvas.TopProperty, car.PostionY - distance);
                             car.PostionY -= distance;
