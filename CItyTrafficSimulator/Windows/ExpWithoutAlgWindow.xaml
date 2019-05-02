@@ -69,7 +69,7 @@
                     </TransformGroup>
                 </Label.RenderTransform>
             </Label>
-            <Rectangle Fill="#FFF4F4F5" Height="317" Canvas.Left="499" Stroke="White" Canvas.Top="10" Width="60"/>
+            <Rectangle x:Name="Kolobrzeska" Fill="#FFF4F4F5" Height="317" Canvas.Left="499" Stroke="White" Canvas.Top="10" Width="60"/>
             <Label x:Name="label6" Content="Kołobrzeska" Canvas.Left="476" Canvas.Top="151" RenderTransformOrigin="0.5,0.5" FontSize="18">
                 <Label.RenderTransform>
                     <TransformGroup>
@@ -80,7 +80,7 @@
                     </TransformGroup>
                 </Label.RenderTransform>
             </Label>
-            <Rectangle Fill="#FFF4F4F5" Height="307" Canvas.Left="499" Stroke="White" Canvas.Top="402" Width="46"/>
+            <Rectangle x:Name="Bazynskiego" Fill="#FFF4F4F5" Height="307" Canvas.Left="499" Stroke="White" Canvas.Top="402" Width="46"/>
             <Label x:Name="label7" Content="Jana Bażyńskiego" Canvas.Left="455" Canvas.Top="540" RenderTransformOrigin="0.5,0.5" FontSize="16">
                 <Label.RenderTransform>
                     <TransformGroup>
@@ -93,13 +93,13 @@
             </Label>
             <Rectangle x:Name="Polanki" Fill="#FFF4F4F5" Height="44" Canvas.Left="199" Stroke="White" Canvas.Top="706" Width="736"/>
             <Label x:Name="label8" Content="Polanki" Canvas.Left="499" Canvas.Top="714" FontSize="18"/>
-            <Rectangle x:Name="WitaStworza1" Fill="#FFF4F4F5" Height="40" Canvas.Left="199" Stroke="White" Canvas.Top="534" Width="94"/>
-            <Rectangle x:Name="WitaStworza2" Fill="#FFF4F4F5" Height="39" Canvas.Left="318" Stroke="White" Canvas.Top="535" Width="181"/>
-            <Rectangle x:Name="WitaStworza3" Fill="#FFF4F4F5" Height="39" Canvas.Left="545" Stroke="White" Canvas.Top="535" Width="217"/>
-            <Rectangle Fill="#FFF4F4F5" Height="172" Canvas.Left="762" Stroke="White" Canvas.Top="402" Width="36"/>
+            <Rectangle x:Name="WitaStwosza1" Fill="#FFF4F4F5" Height="40" Canvas.Left="199" Stroke="White" Canvas.Top="534" Width="94"/>
+            <Rectangle x:Name="WitaStwosza2" Fill="#FFF4F4F5" Height="39" Canvas.Left="318" Stroke="White" Canvas.Top="535" Width="181"/>
+            <Rectangle x:Name="WitaStwosza3" Fill="#FFF4F4F5" Height="39" Canvas.Left="545" Stroke="White" Canvas.Top="535" Width="217"/>
+            <Rectangle x:Name="WitaStwosza4" Fill="#FFF4F4F5" Height="172" Canvas.Left="762" Stroke="White" Canvas.Top="402" Width="36"/>
             <Label x:Name="label9" Content="Wita Stwosza" Height="39" Canvas.Left="588" Canvas.Top="535" Width="111" FontSize="16"/>
-            <Rectangle Fill="#FFF4F4F5" Height="369" Canvas.Left="935" Stroke="White" Canvas.Top="402" Width="90"/>
-            <Rectangle Fill="#FFF4F4F5" Height="317" Canvas.Left="935" Stroke="White" Canvas.Top="10" Width="90"/>
+            <Rectangle x:Name="AlejaZolnierzy2" Fill="#FFF4F4F5" Height="369" Canvas.Left="935" Stroke="White" Canvas.Top="402" Width="90"/>
+            <Rectangle x:Name="AlejaZolnierzy1" Fill="#FFF4F4F5" Height="317" Canvas.Left="935" Stroke="White" Canvas.Top="10" Width="90"/>
             <Label x:Name="label10" Content="Aleja Żołnierzy Wyklętych" Canvas.Left="873" Canvas.Top="535" RenderTransformOrigin="0.5,0.5" FontSize="18">
                 <Label.RenderTransform>
                     <TransformGroup>

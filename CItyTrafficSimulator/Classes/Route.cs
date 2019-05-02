@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Shapes;
 
 namespace CItyTrafficSimulator.Classes
 {
@@ -14,5 +15,6 @@ namespace CItyTrafficSimulator.Classes
         public Point EndPoint { get; set; }
         public int OccupancyRate { get; set; }      //im wyższy współczynnik tym bardziej uczęszczana trasa
         public List<TrafficLights> TrafficLightsOnRoute { get; set; }
+        public int? NumberOfCars { get; set; }
     }
 }

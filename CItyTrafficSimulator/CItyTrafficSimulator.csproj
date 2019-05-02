@@ -75,6 +75,7 @@
     <Compile Include="Classes\Colours.cs" />
     <Compile Include="Classes\Route.cs" />
     <Compile Include="Classes\RouteList.cs" />
+    <Compile Include="Classes\StreetList.cs" />
     <Compile Include="Classes\TrafficLights.cs" />
     <Compile Include="Classes\TrafficLightsList.cs" />
     <Compile Include="Windows\ExpWithAlgWindow.xaml.cs">
