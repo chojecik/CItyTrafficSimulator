@@ -12,7 +12,7 @@ namespace CItyTrafficSimulator.Classes
         public int Id { get; set; }
         public double PostionX { get; set; }
         public double PostionY { get; set; }
-        public Ellipse Vehicle { get; set; }
+        public Rectangle Vehicle { get; set; }
         public Route RouteOfCar { get; set; }
         public Rectangle CurrentStreet { get; set; }
     }

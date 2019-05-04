@@ -12,7 +12,7 @@
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
         <Canvas x:Name="ExpWithoutAlgCanvas" HorizontalAlignment="Left" Height="760" VerticalAlignment="Top" Width="1205" Grid.ColumnSpan="2" Margin="10,0,0,0">
-            <Rectangle x:Name="Grunwaldzka" Fill="#FFF4F4F5" Height="75" Stroke="White" Canvas.Top="327" Width="1174" Canvas.Left="5"/>
+            <Rectangle x:Name="Grunwaldzka" Fill="#FFF4F4F5" Height="75" Stroke="White" Canvas.Top="327" Width="1174" Canvas.Left="10"/>
             <Rectangle x:Name="Pomorska" Fill="#FFF4F4F5" Height="317" Canvas.Left="46" Stroke="White" Canvas.Top="10" Width="25"/>
             <Rectangle x:Name="Opacka" Fill="#FFF4F4F5" Height="369" Canvas.Left="46" Stroke="White" Canvas.Top="402" Width="25"/>
             <Rectangle x:Name="Piastowska" Fill="#FFF4F4F5" Height="317" Canvas.Left="125" Stroke="White" Canvas.Top="10" Width="24"/>
@@ -592,6 +592,34 @@
                 <Ellipse x:Name="Green38" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="1" Canvas.Left="4"/>
                 <Ellipse x:Name="Yellow38" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="9" Canvas.Left="4"/>
                 <Ellipse x:Name="Red38" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="17" Canvas.Left="4"/>
+            </Canvas>
+            <Canvas x:Name="TrafficLightGrunwaldzkaStwoszaSopot" Height="32" Canvas.Left="802" Canvas.Top="298" Width="20" RenderTransformOrigin="0.5,0.5">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-269.855"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+                <Rectangle Fill="Black" Height="26" Stroke="White" Width="17" RenderTransformOrigin="0.882,0.144" Canvas.Top="1"/>
+                <Ellipse x:Name="Green39" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="1" Canvas.Left="4"/>
+                <Ellipse x:Name="Yellow39" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="9" Canvas.Left="4"/>
+                <Ellipse x:Name="Red39" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="17" Canvas.Left="4"/>
+            </Canvas>
+            <Canvas x:Name="TrafficLightGrunwaldzkaRybinskiegoSopot" Height="32" Canvas.Left="203" Canvas.Top="301" Width="20" RenderTransformOrigin="0.5,0.5">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-269.855"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+                <Rectangle Fill="Black" Height="26" Stroke="White" Width="17" RenderTransformOrigin="0.882,0.144" Canvas.Top="1"/>
+                <Ellipse x:Name="Green40" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="1" Canvas.Left="4"/>
+                <Ellipse x:Name="Yellow40" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="9" Canvas.Left="4"/>
+                <Ellipse x:Name="Red40" Fill="White" HorizontalAlignment="Left" Height="8" Stroke="White" VerticalAlignment="Top" Width="8" RenderTransformOrigin="1.167,0.967" Canvas.Top="17" Canvas.Left="4"/>
             </Canvas>
 
         </Canvas>

@@ -23,7 +23,6 @@ namespace CItyTrafficSimulator.Windows
     public partial class ExpWithoutAlgWindow : Window
     {
         private MainWindow _mainWindow;
-        private Ellipse ellipse = new Ellipse();
         private readonly double distance = 0.4;    //prędkość poruszania się elips
         private DateTime startTimer = DateTime.UtcNow;
         private DateTime start = DateTime.UtcNow;
@@ -52,56 +51,21 @@ namespace CItyTrafficSimulator.Windows
             _mainWindow.Show();
         }
 
-        private void SetInitialTrafficLights()  //tutaj oczywiscie nie moze tak byc, poki co tylko dla testow
-        {
-            trafficLights.AllTraficLights[31].IsGreenLight = true;
-            trafficLights.AllTraficLights[31].IsRedLight = false;
-            trafficLights.AllTraficLights[29].IsGreenLight = true;
-            trafficLights.AllTraficLights[29].IsRedLight = false;
-            trafficLights.AllTraficLights[36].IsGreenLight = true;
-            trafficLights.AllTraficLights[36].IsRedLight = false;
-            trafficLights.AllTraficLights[37].IsGreenLight = true;
-            trafficLights.AllTraficLights[37].IsRedLight = false;
-            trafficLights.AllTraficLights[21].IsGreenLight = true;
-            trafficLights.AllTraficLights[21].IsRedLight = false;
-            trafficLights.AllTraficLights[14].IsGreenLight = true;
-            trafficLights.AllTraficLights[14].IsRedLight = false;
-            trafficLights.AllTraficLights[12].IsGreenLight = true;
-            trafficLights.AllTraficLights[12].IsRedLight = false;
-            trafficLights.AllTraficLights[1].IsGreenLight = true;
-            trafficLights.AllTraficLights[1].IsRedLight = false;
-            trafficLights.AllTraficLights[3].IsGreenLight = true;
-            trafficLights.AllTraficLights[3].IsRedLight = false;
-            trafficLights.AllTraficLights[5].IsGreenLight = true;
-            trafficLights.AllTraficLights[5].IsRedLight = false;
-            trafficLights.AllTraficLights[7].IsGreenLight = true;
-            trafficLights.AllTraficLights[7].IsRedLight = false;
-            trafficLights.AllTraficLights[38].IsGreenLight = true;
-            trafficLights.AllTraficLights[38].IsRedLight = false;
-            trafficLights.AllTraficLights[0].IsGreenLight = false;
-            trafficLights.AllTraficLights[0].IsRedLight = true;
-            trafficLights.AllTraficLights[30].IsGreenLight = false;
-            trafficLights.AllTraficLights[30].IsRedLight = true;
-            ColorAllTrafficLights();
-
-        }
-
         private void ColorAllTrafficLights()
         {
-            //ellipse = this.Green;
             trafficLights.AllTraficLights.ForEach(tl =>
             {
                 if (tl.IsGreenLight == true)
                 {
                     tl.GreenLight.Fill = colours.solidColorBrushes[1];
-                    tl.RedLight.Fill = colours.solidColorBrushes[8];
-                    tl.YellowLight.Fill = colours.solidColorBrushes[8];
+                    tl.RedLight.Fill = colours.solidColorBrushes[0];
+                    tl.YellowLight.Fill = colours.solidColorBrushes[0];
                 }
                 else if (tl.IsRedLight == true)
                 {
-                    tl.GreenLight.Fill = colours.solidColorBrushes[8];
+                    tl.GreenLight.Fill = colours.solidColorBrushes[0];
                     tl.RedLight.Fill = colours.solidColorBrushes[3];
-                    tl.YellowLight.Fill = colours.solidColorBrushes[8];
+                    tl.YellowLight.Fill = colours.solidColorBrushes[0];
                 }
             });
         }
@@ -113,25 +77,26 @@ namespace CItyTrafficSimulator.Windows
                 routeList = new RouteList(this);
                 trafficLights = new TrafficLightsList(this);
                 streetList = new StreetList(this);
-                SetInitialTrafficLights();                
+                ColorAllTrafficLights();
             }
             else
             {
                 ControlTrafficLights();
             }
+
             if (counter == 30 || !isStart)  //dodajemy nowy samochod kiedy mamy pewnosc, ze nie nalozy sie on na juz istniejaca elipse
             {
                 isStart = true;
                 Car newCar = new Car();
-                Ellipse ellipse = new Ellipse();
+                Rectangle rectangle = new Rectangle();
 
                 newCar.RouteOfCar = routeList.routes[random.Next(0, routeList.routes.Count)];
                 newCar.PostionX = newCar.RouteOfCar.StartPoint.X;
                 newCar.PostionY = newCar.RouteOfCar.StartPoint.Y;
-                ellipse.Height = 8;
-                ellipse.Width = 8;
-                ellipse.Fill = colours.solidColorBrushes[random.Next(0, colours.solidColorBrushes.Count)];
-                newCar.Vehicle = ellipse;
+                rectangle.Height = 8;
+                rectangle.Width = 8;
+                rectangle.Fill = colours.solidColorBrushes[random.Next(0, colours.solidColorBrushes.Count)];
+                newCar.Vehicle = rectangle;
                 newCar.Id = carIdSetter++;
                 newCar.CurrentStreet = FindCurrentStreet(newCar);
                 cars.Add(newCar);
@@ -154,7 +119,7 @@ namespace CItyTrafficSimulator.Windows
                 switch (car.RouteOfCar.Id)
                 {
                     case 0:
-                        if ((car.PostionY <= 320 )  || (car.PostionY > 320  && car.PostionY <= 326 && trafficLights.AllTraficLights[0].IsGreenLight.Value) || (car.PostionY > 326 && car.PostionY <= 771))
+                        if ((car.PostionY <= 320 )  || (car.PostionY > 320  && car.PostionY <= 326 && trafficLights.AllTraficLights[0].IsGreenLight.Value) || car.PostionY > 326)
                         {
                             var orderOfCarsOnTheRoute = CalculateOrderOnRoute(routeList.routes[0], car.CurrentStreet);
                             if(!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute))
@@ -162,21 +127,11 @@ namespace CItyTrafficSimulator.Windows
                                 car.PostionY += distance;
                                 car.Vehicle.SetValue(Canvas.TopProperty, car.PostionY);
                                 car.CurrentStreet = FindCurrentStreet(car);
-                                //routeList.routes[0].NumberOfCars++;
-
-                                if(car.PostionY > 770 && car.PostionY < 771)
-                                {
-                                    ExpWithoutAlgCanvas.Children.Remove(car.Vehicle);
-                                }
                             }
-                        }
-                        else
-                        {
-                            //routeList.routes[0].NumberOfCars--;
                         }
                         break;
                     case 2:
-                        if (car.PostionX < 44 || (car.PostionX >= 44 && car.PostionX <= 48 && trafficLights.AllTraficLights[31].IsGreenLight.Value) || (car.PostionX > 48 && car.PostionX <= 120) || (car.PostionX > 120 && car.PostionX <= 125 && trafficLights.AllTraficLights[29].IsGreenLight.Value) || (car.PostionX > 125 && car.PostionX <= 167) || (car.PostionX > 167 && car.PostionX <= 172 && trafficLights.AllTraficLights[36].IsGreenLight.Value) || (car.PostionX > 172 && car.PostionX <= 285) || (car.PostionX > 285 && car.PostionX <= 293 && trafficLights.AllTraficLights[37].IsGreenLight.Value) || (car.PostionX > 293 && car.PostionX <= 493) || (car.PostionX > 493 && car.PostionX <= 499 && trafficLights.AllTraficLights[21].IsGreenLight.Value) || (car.PostionX > 499 && car.PostionX <= 756) || (car.PostionX > 756 && car.PostionX <= 764 && trafficLights.AllTraficLights[14].IsGreenLight.Value) || (car.PostionX > 764 && car.PostionX <= 930) || (car.PostionX > 930 && car.PostionX <= 935 && trafficLights.AllTraficLights[12].IsGreenLight.Value) || (car.PostionX > 935 && car.PostionX < 1174))
+                        if (car.PostionX < 40 || (car.PostionX >= 40 && car.PostionX <= 45 && trafficLights.AllTraficLights[31].IsGreenLight.Value) || (car.PostionX > 45 && car.PostionX <= 120) || (car.PostionX > 120 && car.PostionX <= 125 && trafficLights.AllTraficLights[29].IsGreenLight.Value) || (car.PostionX > 125 && car.PostionX <= 167) || (car.PostionX > 167 && car.PostionX <= 172 && trafficLights.AllTraficLights[36].IsGreenLight.Value) || (car.PostionX > 172 && car.PostionX <= 285) || (car.PostionX > 285 && car.PostionX <= 293 && trafficLights.AllTraficLights[37].IsGreenLight.Value) || (car.PostionX > 293 && car.PostionX <= 493) || (car.PostionX > 493 && car.PostionX <= 499 && trafficLights.AllTraficLights[21].IsGreenLight.Value) || (car.PostionX > 499 && car.PostionX <= 756) || (car.PostionX > 756 && car.PostionX <= 764 && trafficLights.AllTraficLights[14].IsGreenLight.Value) || (car.PostionX > 764 && car.PostionX <= 930) || (car.PostionX > 930 && car.PostionX <= 935 && trafficLights.AllTraficLights[12].IsGreenLight.Value) || car.PostionX > 935)
                         { 
                             var orderOfCarsOnTheRoute = CalculateOrderOnRoute(routeList.routes[2], car.CurrentStreet);
                             if (!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute))
@@ -184,41 +139,30 @@ namespace CItyTrafficSimulator.Windows
                                 car.PostionX += distance;
                                 car.Vehicle.SetValue(Canvas.LeftProperty, car.PostionX);
                                 car.CurrentStreet = FindCurrentStreet(car);
-
-                                if (car.PostionX > 1173 && car.PostionX < 1174)
-                                {
-                                    ExpWithoutAlgCanvas.Children.Remove(car.Vehicle);
-                                    //cars.Remove(car);
-                                    //car = null;
-                                }
                             }
                         }
                         break;
-                    //case 3:
-                    //    if (car.PostionX > car.RouteOfCar.EndPoint.X)
-                    //    {
-                    //        car.PostionX -= distance;
-                    //        car.Vehicle.SetValue(Canvas.LeftProperty, car.PostionX);
-                    //    }
-                    //    break;
+                    case 3:
+                        if (car.PostionX >= 1030 || (car.PostionX < 1030 && car.PostionX >= 1025 && trafficLights.AllTraficLights[7].IsGreenLight.Value) || (car.PostionX < 1025 && car.PostionX >= 808) || (car.PostionX < 808 && car.PostionX >= 803 && trafficLights.AllTraficLights[39].IsGreenLight.Value) || (car.PostionX < 803 && car.PostionX >= 564) || (car.PostionX < 564 && car.PostionX >= 559 && trafficLights.AllTraficLights[5].IsGreenLight.Value) || (car.PostionX < 559 && car.PostionX >= 323) || (car.PostionX < 323 && car.PostionX >= 318 && trafficLights.AllTraficLights[38].IsGreenLight.Value) || (car.PostionX < 318 && car.PostionX >= 204) || (car.PostionX < 204 && car.PostionX >= 199 && trafficLights.AllTraficLights[40].IsGreenLight.Value) || (car.PostionX < 199 && car.PostionX >= 154) || (car.PostionX < 154 && car.PostionX >= 149 && trafficLights.AllTraficLights[3].IsGreenLight.Value) || (car.PostionX < 149 && car.PostionX >= 76) || (car.PostionX < 76 && car.PostionX >= 71 && trafficLights.AllTraficLights[1].IsGreenLight.Value) || car.PostionX < 71)
+                        {
+                            var orderOfCarsOnTheRoute = CalculateOrderOnRoute(routeList.routes[3], car.CurrentStreet);
+                            if (!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute))
+                            {
+                                car.PostionX -= distance;
+                                car.Vehicle.SetValue(Canvas.LeftProperty, car.PostionX);
+                                car.CurrentStreet = FindCurrentStreet(car);
+                            }
+                        }
+                        break;
                     case 4:
-                        if (car.PostionY > 405 || (car.PostionY < 405 && car.PostionY > 400 && trafficLights.AllTraficLights[30].IsGreenLight.Value) || (car.PostionY < 400 && car.PostionY > 10))
+                        if (car.PostionY > 405 || (car.PostionY < 405 && car.PostionY > 400 && trafficLights.AllTraficLights[30].IsGreenLight.Value) || car.PostionY < 400)
                         {
                             var orderOfCarsOnTheRoute = CalculateOrderOnRoute(routeList.routes[4], car.CurrentStreet);
-                            if (!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute))
+                            if (!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute) )
                             {
                                 car.PostionY -= distance;
                                 car.Vehicle.SetValue(Canvas.TopProperty, car.PostionY);
-                                //routeList.routes[4].NumberOfCars++;
-                                if (car.PostionY > 10 && car.PostionY < 11)
-                                {
-                                    ExpWithoutAlgCanvas.Children.Remove(car.Vehicle);
-                                }
                             }
-                        }
-                        else
-                        {
-                            //routeList.routes[4].NumberOfCars--;
                         }
                         break;
                     default:
@@ -262,6 +206,8 @@ namespace CItyTrafficSimulator.Windows
                     return cars.Where(c => c.RouteOfCar == route && c.CurrentStreet == street).OrderByDescending(pos => pos.PostionY).ToList();
                 case 2:
                     return cars.Where(c => c.RouteOfCar == route && c.CurrentStreet == street).OrderByDescending(pos => pos.PostionX).ToList();
+                case 3:
+                    return cars.Where(c => c.RouteOfCar == route && c.CurrentStreet == street).OrderBy(pos => pos.PostionX).ToList();
                 case 4:
                     return cars.Where(c => c.RouteOfCar == route && c.CurrentStreet == street).OrderBy(pos => pos.PostionY).ToList();
                 default:
@@ -276,35 +222,12 @@ namespace CItyTrafficSimulator.Windows
 
             if(timeDiff.TotalSeconds > 20)
             {
-                //tutaj moze wstawic metode wykonywana dla wszystkich swiatel z listy i ustawiac je na przeciwna wartosc
-                trafficLights.AllTraficLights[31].IsGreenLight = !trafficLights.AllTraficLights[31].IsGreenLight;
-                trafficLights.AllTraficLights[31].IsRedLight = !trafficLights.AllTraficLights[31].IsRedLight;
-                trafficLights.AllTraficLights[29].IsGreenLight = !trafficLights.AllTraficLights[29].IsGreenLight;
-                trafficLights.AllTraficLights[29].IsRedLight = !trafficLights.AllTraficLights[29].IsRedLight;
-                trafficLights.AllTraficLights[36].IsGreenLight = !trafficLights.AllTraficLights[36].IsGreenLight;
-                trafficLights.AllTraficLights[36].IsRedLight = !trafficLights.AllTraficLights[36].IsRedLight;
-                trafficLights.AllTraficLights[37].IsGreenLight = !trafficLights.AllTraficLights[37].IsGreenLight;
-                trafficLights.AllTraficLights[37].IsRedLight = !trafficLights.AllTraficLights[37].IsRedLight;
-                trafficLights.AllTraficLights[21].IsGreenLight = !trafficLights.AllTraficLights[21].IsGreenLight;
-                trafficLights.AllTraficLights[21].IsRedLight = !trafficLights.AllTraficLights[21].IsRedLight;
-                trafficLights.AllTraficLights[14].IsGreenLight = !trafficLights.AllTraficLights[14].IsGreenLight;
-                trafficLights.AllTraficLights[14].IsRedLight = !trafficLights.AllTraficLights[14].IsRedLight;
-                trafficLights.AllTraficLights[12].IsGreenLight = !trafficLights.AllTraficLights[12].IsGreenLight;
-                trafficLights.AllTraficLights[12].IsRedLight = !trafficLights.AllTraficLights[12].IsRedLight;
-                trafficLights.AllTraficLights[1].IsGreenLight = !trafficLights.AllTraficLights[1].IsGreenLight;
-                trafficLights.AllTraficLights[1].IsRedLight = !trafficLights.AllTraficLights[1].IsRedLight;
-                trafficLights.AllTraficLights[3].IsGreenLight = !trafficLights.AllTraficLights[3].IsGreenLight;
-                trafficLights.AllTraficLights[3].IsRedLight = !trafficLights.AllTraficLights[3].IsRedLight;
-                trafficLights.AllTraficLights[5].IsGreenLight = !trafficLights.AllTraficLights[5].IsGreenLight;
-                trafficLights.AllTraficLights[5].IsRedLight = !trafficLights.AllTraficLights[5].IsRedLight;
-                trafficLights.AllTraficLights[7].IsGreenLight = !trafficLights.AllTraficLights[7].IsGreenLight;
-                trafficLights.AllTraficLights[7].IsRedLight = !trafficLights.AllTraficLights[7].IsRedLight;
-                trafficLights.AllTraficLights[38].IsGreenLight = !trafficLights.AllTraficLights[38].IsGreenLight;
-                trafficLights.AllTraficLights[38].IsRedLight = !trafficLights.AllTraficLights[38].IsRedLight;
-                trafficLights.AllTraficLights[0].IsGreenLight = !trafficLights.AllTraficLights[0].IsGreenLight;
-                trafficLights.AllTraficLights[0].IsRedLight = !trafficLights.AllTraficLights[0].IsRedLight;
-                trafficLights.AllTraficLights[30].IsGreenLight = !trafficLights.AllTraficLights[30].IsGreenLight;
-                trafficLights.AllTraficLights[30].IsRedLight = !trafficLights.AllTraficLights[30].IsRedLight;
+                trafficLights.AllTraficLights.ForEach(tl =>
+                {
+                    tl.IsRedLight = !tl.IsRedLight;
+                    tl.IsGreenLight = !tl.IsGreenLight;
+                });
+               
                 ColorAllTrafficLights();
                 startTimer = DateTime.UtcNow;
             }
