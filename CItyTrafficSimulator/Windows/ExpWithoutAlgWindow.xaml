@@ -12,7 +12,7 @@
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
         <Canvas x:Name="ExpWithoutAlgCanvas" HorizontalAlignment="Left" Height="760" VerticalAlignment="Top" Width="1205" Grid.ColumnSpan="2" Margin="10,0,0,0">
-            <Rectangle x:Name="Grunwaldzka" Fill="#FFF4F4F5" Height="75" Stroke="White" Canvas.Top="327" Width="1174"/>
+            <Rectangle x:Name="Grunwaldzka" Fill="#FFF4F4F5" Height="75" Stroke="White" Canvas.Top="327" Width="1174" Canvas.Left="5"/>
             <Rectangle x:Name="Pomorska" Fill="#FFF4F4F5" Height="317" Canvas.Left="46" Stroke="White" Canvas.Top="10" Width="25"/>
             <Rectangle x:Name="Opacka" Fill="#FFF4F4F5" Height="369" Canvas.Left="46" Stroke="White" Canvas.Top="402" Width="25"/>
             <Rectangle x:Name="Piastowska" Fill="#FFF4F4F5" Height="317" Canvas.Left="125" Stroke="White" Canvas.Top="10" Width="24"/>

@@ -154,21 +154,20 @@ namespace CItyTrafficSimulator.Windows
                 switch (car.RouteOfCar.Id)
                 {
                     case 0:
-                        if ((car.PostionY < 320 )  || (car.PostionY > 320  && car.PostionY < 326 && trafficLights.AllTraficLights[0].IsGreenLight.Value) || (car.PostionY > 326 && car.PostionY < 771))
+                        if ((car.PostionY <= 320 )  || (car.PostionY > 320  && car.PostionY <= 326 && trafficLights.AllTraficLights[0].IsGreenLight.Value) || (car.PostionY > 326 && car.PostionY <= 771))
                         {
                             var orderOfCarsOnTheRoute = CalculateOrderOnRoute(routeList.routes[0], car.CurrentStreet);
-                            if(!CheckIfThereIsACarNearby(car))
+                            if(!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute))
                             {
                                 car.PostionY += distance;
                                 car.Vehicle.SetValue(Canvas.TopProperty, car.PostionY);
                                 car.CurrentStreet = FindCurrentStreet(car);
                                 //routeList.routes[0].NumberOfCars++;
-                            }
-                            else if(car.Equals(orderOfCarsOnTheRoute[0]))
-                            {
-                                car.PostionY += distance;
-                                car.Vehicle.SetValue(Canvas.TopProperty, car.PostionY);
-                                orderOfCarsOnTheRoute.RemoveAt(0);
+
+                                if(car.PostionY > 770 && car.PostionY < 771)
+                                {
+                                    ExpWithoutAlgCanvas.Children.Remove(car.Vehicle);
+                                }
                             }
                         }
                         else
@@ -176,13 +175,25 @@ namespace CItyTrafficSimulator.Windows
                             //routeList.routes[0].NumberOfCars--;
                         }
                         break;
-                    //case 2:
-                    //    if (car.PostionX < car.RouteOfCar.EndPoint.X)
-                    //    {
-                    //        car.PostionX += distance;
-                    //        car.Vehicle.SetValue(Canvas.LeftProperty, car.PostionX);
-                    //    }
-                    //    break;
+                    case 2:
+                        if (car.PostionX < 44 || (car.PostionX >= 44 && car.PostionX <= 48 && trafficLights.AllTraficLights[31].IsGreenLight.Value) || (car.PostionX > 48 && car.PostionX <= 120) || (car.PostionX > 120 && car.PostionX <= 125 && trafficLights.AllTraficLights[29].IsGreenLight.Value) || (car.PostionX > 125 && car.PostionX <= 167) || (car.PostionX > 167 && car.PostionX <= 172 && trafficLights.AllTraficLights[36].IsGreenLight.Value) || (car.PostionX > 172 && car.PostionX <= 285) || (car.PostionX > 285 && car.PostionX <= 293 && trafficLights.AllTraficLights[37].IsGreenLight.Value) || (car.PostionX > 293 && car.PostionX <= 493) || (car.PostionX > 493 && car.PostionX <= 499 && trafficLights.AllTraficLights[21].IsGreenLight.Value) || (car.PostionX > 499 && car.PostionX <= 756) || (car.PostionX > 756 && car.PostionX <= 764 && trafficLights.AllTraficLights[14].IsGreenLight.Value) || (car.PostionX > 764 && car.PostionX <= 930) || (car.PostionX > 930 && car.PostionX <= 935 && trafficLights.AllTraficLights[12].IsGreenLight.Value) || (car.PostionX > 935 && car.PostionX < 1174))
+                        { 
+                            var orderOfCarsOnTheRoute = CalculateOrderOnRoute(routeList.routes[2], car.CurrentStreet);
+                            if (!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute))
+                            {
+                                car.PostionX += distance;
+                                car.Vehicle.SetValue(Canvas.LeftProperty, car.PostionX);
+                                car.CurrentStreet = FindCurrentStreet(car);
+
+                                if (car.PostionX > 1173 && car.PostionX < 1174)
+                                {
+                                    ExpWithoutAlgCanvas.Children.Remove(car.Vehicle);
+                                    //cars.Remove(car);
+                                    //car = null;
+                                }
+                            }
+                        }
+                        break;
                     //case 3:
                     //    if (car.PostionX > car.RouteOfCar.EndPoint.X)
                     //    {
@@ -193,11 +204,16 @@ namespace CItyTrafficSimulator.Windows
                     case 4:
                         if (car.PostionY > 405 || (car.PostionY < 405 && car.PostionY > 400 && trafficLights.AllTraficLights[30].IsGreenLight.Value) || (car.PostionY < 400 && car.PostionY > 10))
                         {
-                            if (!CheckIfThereIsACarNearby(car))
+                            var orderOfCarsOnTheRoute = CalculateOrderOnRoute(routeList.routes[4], car.CurrentStreet);
+                            if (!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute))
                             {
                                 car.PostionY -= distance;
                                 car.Vehicle.SetValue(Canvas.TopProperty, car.PostionY);
                                 //routeList.routes[4].NumberOfCars++;
+                                if (car.PostionY > 10 && car.PostionY < 11)
+                                {
+                                    ExpWithoutAlgCanvas.Children.Remove(car.Vehicle);
+                                }
                             }
                         }
                         else
@@ -224,16 +240,33 @@ namespace CItyTrafficSimulator.Windows
             });
             return street;
         }
-        private bool CheckIfThereIsACarNearby(Car car)
+        private bool CheckIfThereIsACarAhead(Car car, List<Car> order)
         {
-            var carsOnTheSameRoute = cars.Where(c => c.RouteOfCar == car.RouteOfCar && c.Id != car.Id);
+            int carPositionInOrder = order.FindIndex(c => c == car);
 
-            return carsOnTheSameRoute.Any(c => Math.Sqrt(Math.Pow(c.PostionX - car.PostionX, 2) + Math.Pow(c.PostionY - car.PostionY, 2)) < 10);    //wyliczanie odleglosci pomiedzy dwoma autami
+            if (carPositionInOrder == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return (Math.Sqrt(Math.Pow(order[carPositionInOrder-1].PostionX - car.PostionX, 2) + Math.Pow(order[carPositionInOrder-1].PostionY - car.PostionY, 2))) < 10;
+            }
         }
 
         private List<Car> CalculateOrderOnRoute(Route route, Rectangle street)
         {
-            return cars.Where(c => c.RouteOfCar == route && c.CurrentStreet == street).OrderByDescending(pos => pos.PostionY).ToList();
+            switch(route.Id)
+            {
+                case 0:
+                    return cars.Where(c => c.RouteOfCar == route && c.CurrentStreet == street).OrderByDescending(pos => pos.PostionY).ToList();
+                case 2:
+                    return cars.Where(c => c.RouteOfCar == route && c.CurrentStreet == street).OrderByDescending(pos => pos.PostionX).ToList();
+                case 4:
+                    return cars.Where(c => c.RouteOfCar == route && c.CurrentStreet == street).OrderBy(pos => pos.PostionY).ToList();
+                default:
+                    return null;
+            }
             //tutaj order bedzie rozny w zaleznosci od trasy
         }
         public void ControlTrafficLights()
