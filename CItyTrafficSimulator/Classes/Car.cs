@@ -15,5 +15,14 @@ namespace CItyTrafficSimulator.Classes
         public Rectangle Vehicle { get; set; }
         public Route RouteOfCar { get; set; }
         public Rectangle CurrentStreet { get; set; }
+        public Direction? Direction { get; set; }
+    }
+
+    public enum Direction
+    {
+        East,
+        West,
+        North,
+        South
     }
 }
