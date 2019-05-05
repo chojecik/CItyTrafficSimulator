@@ -13,7 +13,8 @@ namespace CItyTrafficSimulator.Classes
         public double PostionX { get; set; }
         public double PostionY { get; set; }
         public Rectangle Vehicle { get; set; }
-        public Route RouteOfCar { get; set; }
+        public Route StartingRouteOfCar { get; set; }
+        public Route CurrentRouteOfCar { get; set; }
         public Rectangle CurrentStreet { get; set; }
         public Direction? Direction { get; set; }
     }
