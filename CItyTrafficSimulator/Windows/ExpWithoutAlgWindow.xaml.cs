@@ -255,6 +255,42 @@ namespace CItyTrafficSimulator.Windows
                             car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 2);
                         }
                         break;
+                    case 12:
+                        if ((car.PostionY <= 320) || (car.PostionY > 320 && car.PostionY <= 326 && trafficLights.AllTraficLights[4].IsGreenLight.Value) || (car.PostionY > 326 && car.PostionY <= 370))
+                        {
+                            var orderOfCarsOnTheRoute = CalculateOrderOnRoute(car);
+                            if (!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute))
+                            {
+                                car.PostionY += distance;
+                                car.Vehicle.SetValue(Canvas.TopProperty, car.PostionY);
+                                car.CurrentStreet = FindCurrentStreet(car);
+                                car.Direction = Direction.South;
+                            }
+                        }
+                        else if(car.PostionY > 370)
+                        {
+                            car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 2);
+                        }
+
+                        break;
+                    case 13:
+                        if ((car.PostionY <= 320) || (car.PostionY > 320 && car.PostionY <= 326 && trafficLights.AllTraficLights[4].IsGreenLight.Value) || (car.PostionY > 326 && car.PostionY <= 330))
+                        {
+                            var orderOfCarsOnTheRoute = CalculateOrderOnRoute(car);
+                            if (!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute))
+                            {
+                                car.PostionY += distance;
+                                car.Vehicle.SetValue(Canvas.TopProperty, car.PostionY);
+                                car.CurrentStreet = FindCurrentStreet(car);
+                                car.Direction = Direction.South;
+                            }
+                        }
+                        else if (car.PostionY > 330)
+                        {
+                            car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 3);
+                        }
+
+                        break;
                     default:
                         break;
                 }
