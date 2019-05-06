@@ -168,7 +168,7 @@ namespace CItyTrafficSimulator.Windows
                         }
                         break;
                     case 2:
-                        if(car.StartingRouteOfCar.Id == 7 && car.PostionX > 549 && car.PostionX < 550)
+                        if((car.StartingRouteOfCar.Id == 7 || car.StartingRouteOfCar.Id == 15) && car.PostionX > 549 && car.PostionX < 550)
                         {
                             car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 7);
                         }
@@ -185,7 +185,11 @@ namespace CItyTrafficSimulator.Windows
                         }
                         break;
                     case 3:
-                        if (car.PostionX >= 1030 || (car.PostionX < 1030 && car.PostionX >= 1025 && trafficLights.AllTraficLights[7].IsGreenLight.Value) || (car.PostionX < 1025 && car.PostionX >= 808) || (car.PostionX < 808 && car.PostionX >= 803 && trafficLights.AllTraficLights[39].IsGreenLight.Value) || (car.PostionX < 803 && car.PostionX >= 564) || (car.PostionX < 564 && car.PostionX >= 559 && trafficLights.AllTraficLights[5].IsGreenLight.Value) || (car.PostionX < 559 && car.PostionX >= 323) || (car.PostionX < 323 && car.PostionX >= 318 && trafficLights.AllTraficLights[38].IsGreenLight.Value) || (car.PostionX < 318 && car.PostionX >= 204) || (car.PostionX < 204 && car.PostionX >= 199 && trafficLights.AllTraficLights[40].IsGreenLight.Value) || (car.PostionX < 199 && car.PostionX >= 154) || (car.PostionX < 154 && car.PostionX >= 149 && trafficLights.AllTraficLights[3].IsGreenLight.Value) || (car.PostionX < 149 && car.PostionX >= 76) || (car.PostionX < 76 && car.PostionX >= 71 && trafficLights.AllTraficLights[1].IsGreenLight.Value) || car.PostionX < 71)
+                        if (car.StartingRouteOfCar.Id == 14 && car.PostionX > 549 && car.PostionX < 550)
+                        {
+                            car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 7);
+                        }
+                        else if (car.PostionX >= 1030 || (car.PostionX < 1030 && car.PostionX >= 1025 && trafficLights.AllTraficLights[7].IsGreenLight.Value) || (car.PostionX < 1025 && car.PostionX >= 808) || (car.PostionX < 808 && car.PostionX >= 803 && trafficLights.AllTraficLights[39].IsGreenLight.Value) || (car.PostionX < 803 && car.PostionX >= 564) || (car.PostionX < 564 && car.PostionX >= 559 && trafficLights.AllTraficLights[5].IsGreenLight.Value) || (car.PostionX < 559 && car.PostionX >= 323) || (car.PostionX < 323 && car.PostionX >= 318 && trafficLights.AllTraficLights[38].IsGreenLight.Value) || (car.PostionX < 318 && car.PostionX >= 204) || (car.PostionX < 204 && car.PostionX >= 199 && trafficLights.AllTraficLights[40].IsGreenLight.Value) || (car.PostionX < 199 && car.PostionX >= 154) || (car.PostionX < 154 && car.PostionX >= 149 && trafficLights.AllTraficLights[3].IsGreenLight.Value) || (car.PostionX < 149 && car.PostionX >= 76) || (car.PostionX < 76 && car.PostionX >= 71 && trafficLights.AllTraficLights[1].IsGreenLight.Value) || car.PostionX < 71)
                         {
                             var orderOfCarsOnTheRoute = CalculateOrderOnRoute(car);
                             if (!CheckIfThereIsACarAhead(car, orderOfCarsOnTheRoute))
@@ -290,6 +294,12 @@ namespace CItyTrafficSimulator.Windows
                             car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 3);
                         }
 
+                        break;
+                    case 14:
+                        car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 3);
+                        break;
+                    case 15:
+                        car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 2);
                         break;
                     default:
                         break;
