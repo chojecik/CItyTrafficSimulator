@@ -172,6 +172,14 @@ namespace CItyTrafficSimulator.Windows
                         {
                             car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 7);
                         }
+                        else if(car.StartingRouteOfCar.Id == 22 && car.PostionX > 945)
+                        {
+                            car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 17);
+                        }
+                        else if (car.StartingRouteOfCar.Id == 23 && car.PostionX > 990)
+                        {
+                            car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 16);
+                        }
                         else if (car.PostionX < 40 || (car.PostionX >= 40 && car.PostionX <= 45 && trafficLights.AllTraficLights[31].IsGreenLight.Value) || (car.PostionX > 45 && car.PostionX <= 120) || (car.PostionX > 120 && car.PostionX <= 125 && trafficLights.AllTraficLights[29].IsGreenLight.Value) || (car.PostionX > 125 && car.PostionX <= 167) || (car.PostionX > 167 && car.PostionX <= 172 && trafficLights.AllTraficLights[36].IsGreenLight.Value) || (car.PostionX > 172 && car.PostionX <= 285) || (car.PostionX > 285 && car.PostionX <= 293 && trafficLights.AllTraficLights[37].IsGreenLight.Value) || (car.PostionX > 293 && car.PostionX <= 493) || (car.PostionX > 493 && car.PostionX <= 499 && trafficLights.AllTraficLights[21].IsGreenLight.Value) || (car.PostionX > 499 && car.PostionX <= 756) || (car.PostionX > 756 && car.PostionX <= 764 && trafficLights.AllTraficLights[14].IsGreenLight.Value) || (car.PostionX > 764 && car.PostionX <= 930) || (car.PostionX > 930 && car.PostionX <= 935 && trafficLights.AllTraficLights[12].IsGreenLight.Value) || car.PostionX > 935)
                         { 
                             var orderOfCarsOnTheRoute = CalculateOrderOnRoute(car);
@@ -354,6 +362,12 @@ namespace CItyTrafficSimulator.Windows
                         break;
                     case 21:
                         car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 16);
+                        break;
+                    case 22:
+                        car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 2);
+                        break;
+                    case 23:
+                        car.CurrentRouteOfCar = routeList.routes.Find(r => r.Id == 2);
                         break;
                     default:
                         break;
