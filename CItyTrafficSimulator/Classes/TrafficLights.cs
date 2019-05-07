@@ -9,9 +9,9 @@ namespace CItyTrafficSimulator.Classes
 {
     public class TrafficLights
     {
-        public bool? IsRedLight { get; set; }
+        public bool IsRedLight { get; set; }
         public bool? IsYellowLight { get; set; }
-        public bool? IsGreenLight { get; set; }
+        public bool IsGreenLight { get; set; }
         public int TimeOfRedLight { get; set; }
         public int TimeOfYellowLight { get; set; }
         public int TimeOfGreenLight { get; set; }
