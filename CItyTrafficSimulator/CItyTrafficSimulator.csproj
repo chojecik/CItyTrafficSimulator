@@ -55,11 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Windows\ExpWithAlgWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\ExpWithoutAlgWindow.xaml">
+    <Page Include="Windows\ExperimentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -78,11 +74,8 @@
     <Compile Include="Classes\StreetList.cs" />
     <Compile Include="Classes\TrafficLights.cs" />
     <Compile Include="Classes\TrafficLightsList.cs" />
-    <Compile Include="Windows\ExpWithAlgWindow.xaml.cs">
-      <DependentUpon>ExpWithAlgWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\ExpWithoutAlgWindow.xaml.cs">
-      <DependentUpon>ExpWithoutAlgWindow.xaml</DependentUpon>
+    <Compile Include="Windows\ExperimentWindow.xaml.cs">
+      <DependentUpon>ExperimentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

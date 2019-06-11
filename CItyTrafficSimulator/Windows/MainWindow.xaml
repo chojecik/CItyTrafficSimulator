@@ -9,10 +9,21 @@
     <Grid Background="#FFB9AE6D">
         <Button x:Name="ExpWithoutAlgButton" Content="&#xD;&#xA;Run experiment without &#xD;&#xA;optimization algorithm" HorizontalAlignment="Left" Margin="222,156,0,0" VerticalAlignment="Top" Width="180" Height="69" Click="ExpWithoutAlg_Click"/>
         <Button x:Name="ExpWithAlgButton" Content="&#xD;&#xA;Run experiment with &#xD;&#xA;optimization algorithm" HorizontalAlignment="Left" Margin="794,156,0,0" VerticalAlignment="Top" Width="170" Height="69" Click="ExpWithAlg_Click"/>
-        <Label x:Name="WithoutAlgLabel" Content="Time without optimization algorithm: &#xD;&#xA;" HorizontalAlignment="Left" Margin="56,360,0,0" VerticalAlignment="Top" Height="29" Width="212"/>
+        <Label x:Name="WithoutAlgLabel" Content="Time without optimization algorithm: &#xD;&#xA;" HorizontalAlignment="Left" Margin="56,360,0,0" VerticalAlignment="Top" Height="29" Width="212" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.046"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
         <Label x:Name="WithAlgLabel" Content="Time with optimization algorithm:" HorizontalAlignment="Left" Margin="794,363,0,0" VerticalAlignment="Top" Width="206"/>
         <Label x:Name="TimeWithoutAlgLabel" Content="&#xD;&#xA;" HorizontalAlignment="Left" Margin="273,360,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.18,0.215"/>
         <Label x:Name="TimeWIthAlgLabel" Content="&#xD;&#xA;" HorizontalAlignment="Left" Margin="987,363,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="TimeWithout" Content="" HorizontalAlignment="Left" Margin="273,360,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.365,0.531" Width="59"/>
+        <Label x:Name="TimeWith" Content="" HorizontalAlignment="Left" Margin="987,363,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.365,0.531" Width="59"/>
 
     </Grid>
 </Window>

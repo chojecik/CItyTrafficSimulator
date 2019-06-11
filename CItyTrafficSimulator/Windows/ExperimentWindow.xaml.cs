@@ -18,14 +18,16 @@ using System.Windows.Shapes;
 namespace CItyTrafficSimulator.Windows
 {
     /// <summary>
-    /// Interaction logic for ExpWithoutAlgWindow.xaml
+    /// Interaction logic for ExperimentWindow.xaml
     /// </summary>
-    public partial class ExpWithoutAlgWindow : Window
+    public partial class ExperimentWindow : Window
     {
         private MainWindow _mainWindow;
         private readonly double distance = 0.4;    //prędkość poruszania się elips
         private DateTime startTimer = DateTime.UtcNow;
         private DateTime start = DateTime.UtcNow;
+        private DateTime experimentTime;
+        private TimeSpan carTimeDiff;
         private Random random = new Random();
         private List<Car> cars = new List<Car>();
         private int counter;
@@ -37,14 +39,18 @@ namespace CItyTrafficSimulator.Windows
         private bool isStart;
         private int carIdSetter;
         private List<Car> carsToRemove = new List<Car>();
+        private bool isAlgorithm;
+        public int experimentCarId = -1;
+        private bool experimentStarted = false;
 
-        public ExpWithoutAlgWindow(MainWindow mainWindow)
+        public ExperimentWindow(MainWindow mainWindow, bool isAlgorithm)
         {
             colours = new Colours();
             InitializeComponent();
             _mainWindow = mainWindow;
             Closed += OnWindowClosed;
             CompositionTarget.Rendering += CompositionTarget_Rendering;
+            this.isAlgorithm = isAlgorithm;
         }
 
         public void OnWindowClosed(object sender, System.EventArgs e)
@@ -73,6 +79,17 @@ namespace CItyTrafficSimulator.Windows
 
         private void CompositionTarget_Rendering(object sender, System.EventArgs e)
         {
+            DateTime end = DateTime.UtcNow;
+            TimeSpan timeDiff = end - start;
+            if (experimentStarted)
+            {
+                carTimeDiff = end - experimentTime;
+                TimeOfCarLabel.Content = Convert.ToDouble(carTimeDiff.TotalMilliseconds / 1000.0);
+            }
+            
+            StopWatchLabel.Content = Convert.ToDouble(timeDiff.TotalMilliseconds / 1000.0);
+           
+
             if (!isStart)
             {
                 routeList = new RouteList(this);
@@ -102,6 +119,16 @@ namespace CItyTrafficSimulator.Windows
                 newCar.Id = carIdSetter++;
                 newCar.CurrentStreet = FindCurrentStreet(newCar);
                 newCar.Direction = newCar.CurrentRouteOfCar.StartingDirection;
+                
+
+                if(newCar.StartingRouteOfCar.Id == 9 && timeDiff.TotalSeconds > 100 && !experimentStarted)
+                {
+                    newCar.Vehicle.Fill = new SolidColorBrush() { Color = Color.FromRgb(255, 0, 102) };
+                    experimentCarId = newCar.Id;
+                    experimentTime = DateTime.UtcNow;
+                    experimentStarted = true;
+                }
+
                 cars.Add(newCar);
                 ExpWithoutAlgCanvas.Children.Add(newCar.Vehicle);
                 Canvas.SetTop(newCar.Vehicle, newCar.PostionY);
@@ -113,9 +140,7 @@ namespace CItyTrafficSimulator.Windows
                 counter++;
             }
             //testowe
-            DateTime end = DateTime.UtcNow;
-            TimeSpan timeDiff = end - start;
-            StopWatchLabel.Content = Convert.ToDouble(timeDiff.TotalMilliseconds / 1000.0);
+           
 
 
             cars.ForEach(c =>
@@ -123,6 +148,23 @@ namespace CItyTrafficSimulator.Windows
                 if((int)c.PostionX == (int)c.CurrentRouteOfCar.EndPoint.X && (int)c.PostionY == (int)c.CurrentRouteOfCar.EndPoint.Y)
                 {
                     carsToRemove.Add(c);
+
+                    if(c.Id == experimentCarId)
+                    {
+                        if (!isAlgorithm)
+                        {
+                            _mainWindow.TimeWithout.Content = Convert.ToDouble(carTimeDiff.TotalMilliseconds / 1000.0);
+                            this.Close();
+                            _mainWindow.Show();
+                        }
+                        else
+                        {
+                            _mainWindow.TimeWith.Content = Convert.ToDouble(carTimeDiff.TotalMilliseconds / 1000.0);
+                            this.Close();
+                            _mainWindow.Show();
+
+                        }
+                    }
                 }
             });
 
@@ -423,19 +465,120 @@ namespace CItyTrafficSimulator.Windows
             stopTimer = DateTime.UtcNow;
             TimeSpan timeDiff = stopTimer - startTimer;
 
-            if(timeDiff.TotalSeconds > 20)
+            if (!isAlgorithm)
             {
-                trafficLights.AllTraficLights.ForEach(tl =>
+                if (timeDiff.TotalSeconds > 30)
                 {
-                    tl.IsRedLight = !tl.IsRedLight;
-                    tl.IsGreenLight = !tl.IsGreenLight;
-                });
-               
-                ColorAllTrafficLights();
-                startTimer = DateTime.UtcNow;
+                    trafficLights.AllTraficLights.ForEach(tl =>
+                    {
+                        tl.IsRedLight = !tl.IsRedLight;
+                        tl.IsGreenLight = !tl.IsGreenLight;
+                    });
+
+                    ColorAllTrafficLights();
+                    startTimer = DateTime.UtcNow;
+                }
             }
+            else
+            {
+                CountNumberOfCarsOnTheStreets();
+
+                if (timeDiff.TotalSeconds > 10)
+                {
+                    if (streetList.carsOnTheStreet[0] + streetList.carsOnTheStreet[6] > streetList.carsOnTheStreet[7] + streetList.carsOnTheStreet[8])
+                    {
+                        trafficLights.AllTraficLights[31].IsGreenLight = true;
+                        trafficLights.AllTraficLights[31].IsRedLight = false;
+                        trafficLights.AllTraficLights[1].IsGreenLight = true;
+                        trafficLights.AllTraficLights[1].IsRedLight = false;
+                        trafficLights.AllTraficLights[3].IsGreenLight = true;
+                        trafficLights.AllTraficLights[3].IsRedLight = false;
+                        trafficLights.AllTraficLights[0].IsGreenLight = false;
+                        trafficLights.AllTraficLights[0].IsRedLight = true;
+                        trafficLights.AllTraficLights[30].IsGreenLight = false;
+                        trafficLights.AllTraficLights[30].IsRedLight = true;
+                    }
+                    else
+                    {
+                        trafficLights.AllTraficLights[31].IsGreenLight = false;
+                        trafficLights.AllTraficLights[31].IsRedLight = true;
+                        trafficLights.AllTraficLights[1].IsGreenLight = false;
+                        trafficLights.AllTraficLights[1].IsRedLight = true;
+                        trafficLights.AllTraficLights[3].IsGreenLight = false;
+                        trafficLights.AllTraficLights[3].IsRedLight = true;
+                        trafficLights.AllTraficLights[0].IsGreenLight = true;
+                        trafficLights.AllTraficLights[0].IsRedLight = false;
+                        trafficLights.AllTraficLights[30].IsGreenLight = true;
+                        trafficLights.AllTraficLights[30].IsRedLight = false;
+                    }
+
+                    if (streetList.carsOnTheStreet[2] + streetList.carsOnTheStreet[5] > streetList.carsOnTheStreet[9])
+                    {
+                        trafficLights.AllTraficLights[21].IsGreenLight = true;
+                        trafficLights.AllTraficLights[21].IsRedLight = false;
+                        trafficLights.AllTraficLights[5].IsGreenLight = true;
+                        trafficLights.AllTraficLights[5].IsRedLight = false;
+                        trafficLights.AllTraficLights[4].IsGreenLight = false;
+                        trafficLights.AllTraficLights[4].IsRedLight = true;
+                    }
+                    else
+                    {
+                        trafficLights.AllTraficLights[21].IsGreenLight = false;
+                        trafficLights.AllTraficLights[21].IsRedLight = true;
+                        trafficLights.AllTraficLights[5].IsGreenLight = false;
+                        trafficLights.AllTraficLights[5].IsRedLight = true;
+                        trafficLights.AllTraficLights[4].IsGreenLight = true;
+                        trafficLights.AllTraficLights[4].IsRedLight = false;
+                    }
+
+                    if (streetList.carsOnTheStreet[3] + streetList.carsOnTheStreet[4] > streetList.carsOnTheStreet[10] + streetList.carsOnTheStreet[11])
+                    {
+                        trafficLights.AllTraficLights[12].IsGreenLight = true;
+                        trafficLights.AllTraficLights[12].IsRedLight = false;
+                        trafficLights.AllTraficLights[7].IsGreenLight = true;
+                        trafficLights.AllTraficLights[7].IsRedLight = false;
+                        trafficLights.AllTraficLights[8].IsGreenLight = false;
+                        trafficLights.AllTraficLights[8].IsRedLight = true;
+                        trafficLights.AllTraficLights[6].IsGreenLight = false;
+                        trafficLights.AllTraficLights[6].IsRedLight = true;
+                    }
+                    else
+                    {
+                        trafficLights.AllTraficLights[12].IsGreenLight = false;
+                        trafficLights.AllTraficLights[12].IsRedLight = true;
+                        trafficLights.AllTraficLights[7].IsGreenLight = false;
+                        trafficLights.AllTraficLights[7].IsRedLight = true;
+                        trafficLights.AllTraficLights[8].IsGreenLight = true;
+                        trafficLights.AllTraficLights[8].IsRedLight = false;
+                        trafficLights.AllTraficLights[6].IsGreenLight = true;
+                        trafficLights.AllTraficLights[6].IsRedLight = false;
+                    }
+                    startTimer = DateTime.UtcNow;
+                }
+
+                ColorAllTrafficLights();
+            }
+            
             
         }
 
+        public void CountNumberOfCarsOnTheStreets()
+        {
+            streetList.carsOnTheStreet[0] = cars.Where(c => c.CurrentStreet == streetList.streets[4] && c.PostionX < 46 && c.Direction == Direction.East).Count();
+            streetList.carsOnTheStreet[1] = cars.Where(c => c.CurrentStreet == streetList.streets[4] && c.PostionX > 46 && c.PostionX < 172 && c.Direction == Direction.East).Count();
+            streetList.carsOnTheStreet[2] = cars.Where(c => c.CurrentStreet == streetList.streets[4] && c.PostionX > 172 && c.PostionX < 499 && c.Direction == Direction.East).Count();
+            streetList.carsOnTheStreet[3] = cars.Where(c => c.CurrentStreet == streetList.streets[4] && c.PostionX > 499 && c.PostionX < 935 && c.Direction == Direction.East).Count();
+            streetList.carsOnTheStreet[4] = cars.Where(c => c.CurrentStreet == streetList.streets[4] && c.PostionX > 1025 && c.Direction == Direction.West).Count();
+            streetList.carsOnTheStreet[5] = cars.Where(c => c.CurrentStreet == streetList.streets[4] && c.PostionX < 1025 && c.PostionX > 559 && c.Direction == Direction.West).Count();
+            streetList.carsOnTheStreet[6] = cars.Where(c => c.CurrentStreet == streetList.streets[4] && c.PostionX < 559 && c.PostionX > 71 && c.Direction == Direction.West).Count();
+            streetList.carsOnTheStreet[7] = cars.Where(c => c.CurrentStreet == streetList.streets[0] && c.Direction == Direction.South).Count();
+            streetList.carsOnTheStreet[8] = cars.Where(c => c.CurrentStreet == streetList.streets[5] && c.Direction == Direction.North).Count();
+            streetList.carsOnTheStreet[9] = cars.Where(c => c.CurrentStreet == streetList.streets[2] && c.Direction == Direction.South).Count();
+            streetList.carsOnTheStreet[10] = cars.Where(c => c.CurrentStreet == streetList.streets[3] && c.Direction == Direction.South).Count();
+            streetList.carsOnTheStreet[11] = cars.Where(c => c.CurrentStreet == streetList.streets[13] && c.Direction == Direction.North).Count();
+
+        }
+
+       
     }
 }

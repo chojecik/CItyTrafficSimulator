@@ -11,9 +11,9 @@ namespace CItyTrafficSimulator.Classes
     public class TrafficLightsList
     {
         public List<TrafficLights> AllTraficLights;
-        private ExpWithoutAlgWindow _expWithoutAlgWindow;
+        private ExperimentWindow _expWithoutAlgWindow;
 
-        public TrafficLightsList(ExpWithoutAlgWindow expWithoutAlgWindow)
+        public TrafficLightsList(ExperimentWindow expWithoutAlgWindow)
         {
             _expWithoutAlgWindow = expWithoutAlgWindow;
             AllTraficLights = new List<TrafficLights>();
@@ -27,9 +27,9 @@ namespace CItyTrafficSimulator.Classes
             AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green6, RedLight = _expWithoutAlgWindow.Red6, YellowLight = _expWithoutAlgWindow.Yellow6, TimeOfGreenLight = 60, TimeOfRedLight = 60, TimeOfYellowLight = 2, IsGreenLight = false, IsRedLight = true }); //światła na skrzyżowaniu Aleji Żołnierzy Wyklętych z Grunwaldzką w stronę Niedźwiednika
             AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green7, RedLight = _expWithoutAlgWindow.Red7, YellowLight = _expWithoutAlgWindow.Yellow7, TimeOfGreenLight = 60, TimeOfRedLight = 60, TimeOfYellowLight = 2, IsGreenLight = true, IsRedLight = false }); //światła na skrzyżowaniu Grunwaldzkiej z Aleją Żołnierzy Wyklętych w stronę Sopotu
             AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green8, RedLight = _expWithoutAlgWindow.Red8, YellowLight = _expWithoutAlgWindow.Yellow8, TimeOfGreenLight = 60, TimeOfRedLight = 60, TimeOfYellowLight = 2, IsRedLight = true, IsGreenLight = false }); //światła na skrzyżowaniu Aleji Żołnierzy Wyklętych z Grunwaldzką w stronę Zaspy
-            AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green9, RedLight = _expWithoutAlgWindow.Red9, YellowLight = _expWithoutAlgWindow.Yellow9, TimeOfGreenLight = 60, TimeOfRedLight = 30, TimeOfYellowLight = 2, IsRedLight = true, IsGreenLight = false }); //światła na skrzyżowaniu Aleji Żołnierzy Wyklętych z Polanki w stronę Zaspy
+            AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green9, RedLight = _expWithoutAlgWindow.Red9, YellowLight = _expWithoutAlgWindow.Yellow9, TimeOfGreenLight = 60, TimeOfRedLight = 30, TimeOfYellowLight = 2, IsRedLight = false, IsGreenLight = true }); //światła na skrzyżowaniu Aleji Żołnierzy Wyklętych z Polanki w stronę Zaspy
             AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green10, RedLight = _expWithoutAlgWindow.Red10, YellowLight = _expWithoutAlgWindow.Yellow10, TimeOfGreenLight = 30, TimeOfRedLight = 60, TimeOfYellowLight = 2, IsGreenLight = true, IsRedLight = false }); //światła na skrzyżowaniu Polanki z Aleją Żołnierzy Wyklętych
-            AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green11, RedLight = _expWithoutAlgWindow.Red11, YellowLight = _expWithoutAlgWindow.Yellow11, TimeOfGreenLight = 60, TimeOfRedLight = 30, TimeOfYellowLight = 2, IsRedLight = true, IsGreenLight = false }); //światła na skrzyżowaniu Aleji Żołnierzy Wyklętych z Polanki w stronę Niedźwiednika
+            AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green11, RedLight = _expWithoutAlgWindow.Red11, YellowLight = _expWithoutAlgWindow.Yellow11, TimeOfGreenLight = 60, TimeOfRedLight = 30, TimeOfYellowLight = 2, IsRedLight = false, IsGreenLight = true }); //światła na skrzyżowaniu Aleji Żołnierzy Wyklętych z Polanki w stronę Niedźwiednika
             AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green12, RedLight = _expWithoutAlgWindow.Red12, YellowLight = _expWithoutAlgWindow.Yellow12, TimeOfGreenLight = 60, TimeOfRedLight = 60, TimeOfYellowLight = 2, IsGreenLight = true, IsRedLight = false }); //światła na skrzyżowaniu Grunwaldzkiej z Aleją Żołnierzy Wyklętych w stronę Gdańska
             AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green13, RedLight = _expWithoutAlgWindow.Red13, YellowLight = _expWithoutAlgWindow.Yellow13, TimeOfGreenLight = 30, TimeOfRedLight = 60, TimeOfYellowLight = 2, IsRedLight = true, IsGreenLight = false }); //światła na skrzyżowaniu Wita Stwosza z Grunwaldzką
             AllTraficLights.Add(new TrafficLights() { GreenLight = _expWithoutAlgWindow.Green14, RedLight = _expWithoutAlgWindow.Red14, YellowLight = _expWithoutAlgWindow.Yellow14, TimeOfGreenLight = 60, TimeOfRedLight = 30, TimeOfYellowLight = 2, IsGreenLight = true, IsRedLight = false }); //światła na skrzyżowaniu Grunwaldzkiej z Wita Stwosza

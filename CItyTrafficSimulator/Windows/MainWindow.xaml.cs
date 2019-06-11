@@ -29,16 +29,16 @@ namespace CItyTrafficSimulator
         private void ExpWithoutAlg_Click(object sender, RoutedEventArgs e)
         {
             Hide();
-            ExpWithoutAlgWindow expWithoutAlgWindow = new ExpWithoutAlgWindow(this);
-            expWithoutAlgWindow.Show();
+            ExperimentWindow experimentWindow = new ExperimentWindow(this, false);
+            experimentWindow.Show();
            
         }
 
         private void ExpWithAlg_Click(object sender, RoutedEventArgs e)
         {
             Hide();
-            ExpWithAlgWindow expWithAlgWindow = new ExpWithAlgWindow(this);
-            expWithAlgWindow.Show();
+            ExperimentWindow experimentWindow = new ExperimentWindow(this, true);
+            experimentWindow.Show();
         }
     }
 }

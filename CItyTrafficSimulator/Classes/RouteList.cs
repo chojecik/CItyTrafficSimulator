@@ -11,9 +11,9 @@ namespace CItyTrafficSimulator.Classes
     public class RouteList
     {
         public List<Route> routes;
-        private ExpWithoutAlgWindow _expWithoutAlgWindow;
+        private ExperimentWindow _expWithoutAlgWindow;
         private TrafficLightsList trafficLightsList;
-        public RouteList(ExpWithoutAlgWindow expWithoutAlgWindow)
+        public RouteList(ExperimentWindow expWithoutAlgWindow)
         {
             _expWithoutAlgWindow = expWithoutAlgWindow;
             routes = new List<Route>();
